@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>АНТИМЕМ</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #countdown {
+      font-size: 3rem;
+    }
+    #images {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    #images img {
+      max-width: 80%;
+      max-height: 80%;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">5</div>
+  <div id="images"></div>
+
+  <script>
+    // Функция для отсчёта секунд
+    function countdown(callback) {
+      let count = 5;
+      let countdownDisplay = document.getElementById('countdown');
+      const interval = setInterval(() => {
+        count--;
+        countdownDisplay.textContent = count;
+        if (count <= 0) {
+          clearInterval(interval);
+          countdownDisplay.style.display = 'none';
+          callback();
+        }
+      }, 1000);
+    }
+
+    // Функция для отображения изображений
+    function showImages() {
+      let imagesContainer = document.getElementById('images');
+      imagesContainer.style.display = 'flex';
+      let image1 = document.createElement('img');
+      image1.src = 'https://cdn.discordapp.com/attachments/641284405838479363/1193845977841405962/Safeimagekit-resized-img.png?ex=65ae32b5&is=659bbdb5&hm=90de86517d3250982b688cb6370af10c52d5e5d8c9f0d10618b97a3d559c500e&'; // заменить на реальный путь к изображению
+      imagesContainer.appendChild(image1);
+      // Добавьте больше изображений по необходимости
+    }
+
+    // Запускаем отсчёт и после него отображаем изображения
+    countdown(showImages);
+
+    // Перенаправляем пользователя на другой сайт через 5 секунд после отображения изображений
+    setTimeout(() => {
+      window.location.replace('https://docs.google.com/document/d/1im62eaI0lVXuuoZe03V2fqO91TyBjIqIKa53Tn3dMJE/edit#heading=h.d5w8fbbaqcca'); // заменить на реальный URL
+    }, 10000);
+  </script>
+</body>
+</html>
